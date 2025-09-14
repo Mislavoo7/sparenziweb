@@ -28,7 +28,7 @@ Users who register can create lists, and within those lists, they can add produc
 The user can set a preferred currency in their settings, but a list’s currency can differ from the user’s default. In the end, the user gets an overview of all their expenses.
 
 ## API
-There is a separate repository for a React Native (Expo) app that connects to this Rails backend. Through it, users can:  
+There is a separate repository for a React Native (Expo) app with the name [Sparenzi](https://github.com/Mislavoo7/sparenzi) that connects to this Rails backend. Through it, users can:  
 - Register and log in  
 - Add products and lists  
 - Set their preferred language  
