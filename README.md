@@ -1,4 +1,4 @@
-# Sparenzi
+# Sparenzi Web
 This is an example app, a showcase project. It is a Ruby on Rails application that enables users to track their daily expenses while shopping for groceries. 
 
 ## Content
