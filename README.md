@@ -36,4 +36,11 @@ There is a separate repository for a React Native (Expo) app that connects to th
 - Choose their preferred currency (€ or $)  
 - Read the contents of the legal pages.
 
+## Live
+The app is on Hetzner server where I installed Ubuntu 24, ngnx and puma.
+[Here you can find my RoR Sparenzi web](https://sparenzi.eu/)
+
+
+
+
 
