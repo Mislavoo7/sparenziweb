@@ -1,0 +1,12 @@
+<div class="sm:flex sm:items-center gap-24 w-full">
+  <div class="sm:basis-1/3">
+    <h1 class="text-5xl font-semibold text-gray-900 pb-10"><%= title %></h1>
+    <% if defined?(new_url) and defined?(new_title) %>
+      <%= link_to new_url, class: "button is-primary" do %>
+        <%= new_title %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= render "user/lists/slider" %>
+</div>

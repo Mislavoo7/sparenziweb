@@ -1,0 +1,8 @@
+<tr class="list-<%= list.id %>-new-product">
+  <td colspan="5" >
+    <%= link_to new_user_list_product_path(list), class: "section-bttn flex items-center gap-2 w-2/4", remote: true, data: {tooltip: t('tooltips.add')} do %>
+      <%= phosphor_icon 'plus', options: { class: '' } %>
+      <%= t("product.add") %>
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,76 @@
+.header {
+  @apply
+  absolute 
+  inset-x-0 
+  top-0 
+  z-50 
+  bg-primary-100 
+  p-6;
+}
+
+.nav-logo {
+  @apply
+    nav-link 
+    text-4xl;
+}
+
+.nav-wrapper {
+  @apply
+  flex
+  justify-between 
+  items-center
+  mx-auto 
+  max-w-7xl 
+  px-6 
+  pt-6;
+}
+
+.nav {
+  @apply
+  flex 
+  w-full
+  lg:flex-row 
+  lg:items-center 
+  lg:justify-start 
+  lg:gap-x-12;
+}
+
+.desktop-nav {
+  @apply
+    w-full
+    hidden 
+    lg:flex 
+    items-center 
+    gap-x-12;
+}
+
+.desktop-language-switch {
+  @apply
+  ml-auto;
+}
+
+.mobile-nav {
+  @apply
+    flex 
+    fixed
+    top-3
+    right-3
+    w-full 
+    justify-end 
+    items-center 
+    mt-4 
+    ml-auto
+    lg:hidden;
+}
+
+.lang {
+  @apply
+  flex 
+  items-center 
+  gap-4;
+}
+
+.nav-link:not(.nav-logo):hover,
+.nav-link:not(.nav-logo)[aria-current="page"] {
+  text-decoration: underline;
+}

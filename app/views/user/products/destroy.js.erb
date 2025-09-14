@@ -1,0 +1,17 @@
+var totalLists = document.querySelector('#tota-filters');
+totalLists.innerHTML = "<%= j render "user/lists/total_filters", lists: @lists %>";
+
+
+var totalList = document.querySelector('#js-list-total-price-<%= @list.id %>');
+totalList.innerHTML = "<%= @list.total_price_humanized %>";
+
+var productOldTr = document.querySelector('.list-<%= @list.id %>-product-<%= @product.id %>');
+
+if (productOldTr) {
+  productOldTr.style.transition = "opacity 0.2s ease-out"; // fast equivalent
+  productOldTr.style.opacity = 0;
+
+  setTimeout(function() {
+    productOldTr.remove();
+  }, 200); // match "fast" timing
+}

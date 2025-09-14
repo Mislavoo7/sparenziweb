@@ -1,0 +1,91 @@
+<div class="page-image-wrapper sm:basis-2/3 space-y-6 mt-[10.5rem]">
+  <div class="flex flex-wrap gap-4 items-end">
+
+   <% @currencies.each do |currency| %>
+     <%= link_to currency, user_root_path(currency: currency), class: "button #{currency == @currency ? 'is-primary' : 'is-gray'}" %>
+   <% end %>
+
+    <div class="relative max-sm:hidden">
+      <legend class="font-medium text-gray-950 sm:text-sm mb-2"><%= tf("list.shop_name") %></legend>
+      <div x-data="{ open: false }" class="relative inline-block w-64">
+        <button 
+          type="button"
+          @click="open = !open"
+          class="w-full flex justify-between items-center px-4 py-2 bg-white border border-gray-300 rounded shadow focus:outline-none"
+        >
+          <span>Select Shops</span>
+          <svg :class="{'transform rotate-180': open}" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div 
+          x-show="open"
+          @click.away="open = false"
+          class="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded shadow max-h-64 overflow-y-auto">
+          <div class="flex flex-col gap-2 p-4">
+            <!-- All Checkbox -->
+            <label class="flex items-center gap-2">
+              <%= check_box_tag("all_shop_names[]", "all", true, class: "rounded border-gray-300", 
+                                "data-action" => "change->filters#fireAll",
+                                "data-filters-target" => "allCheckbox") %>
+              <span><%= t("all") %></span>
+            </label>
+            <!-- Shop Checkboxes -->
+            <% @shop_names.each do |shop_name| %>
+              <label class="flex items-center gap-2">
+                <%= check_box_tag("shop_names[]", shop_name.parameterize, true, class: "rounded border-gray-300", 
+                                  "data-action" => "change->filters#fire",
+                                  "data-chart-color" => transrom_name_to_color(shop_name),
+                                  "data-filters-target" => "shopNames") %>
+                <span><%= shop_name %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="from_date" class="text-sm text-gray-700 mb-1"><%= t("filters.from_date") %></label>
+      <%= text_field_tag :from_date, @earliest_date.strftime("%d.%m.%Y"), 
+        class: "input is-datepicker js-input-datepicker px-3 py-2 border rounded-md shadow-sm w-40", 
+        "data-action" => "change->filters#fire", 
+        "data-filters-target" => "dates" %>
+    </div>
+    <div class="flex flex-col">
+      <label for="to_date" class="text-sm text-gray-700 mb-1"><%= t("filters.to_date") %></label>
+      <%= text_field_tag :to_date, @latest_date.strftime("%d.%m.%Y"), 
+        class: "input is-datepicker js-input-datepicker px-3 py-2 border rounded-md shadow-sm w-40", 
+        "data-action" => "change->filters#fire", 
+        "data-filters-target" => "dates" %>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-2">
+    <% units = [:week, :month, :year] %>
+    <% [0, 1].each do |offset| %>
+      <% units.each do |unit| %>
+        <% reference_date = offset.send(unit).ago %>
+        <% from_date = reference_date.public_send("beginning_of_#{unit}") %>
+        <% to_date = reference_date.public_send("end_of_#{unit}") %>
+        <% label = offset == 0 ? "this_#{unit}" : "last_#{unit}" %>
+
+        <a class="button is-primary"
+           href="javascript:void(0);"
+           data-from-date="<%= from_date.strftime('%d.%m.%Y') %>"
+           data-to-date="<%= to_date.strftime('%d.%m.%Y') %>"
+           data-action="click->filters#firePredefinedDate">
+           <%= t("filters.#{label}") %>
+        </a>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    initDatepicker();
+  });
+</script>

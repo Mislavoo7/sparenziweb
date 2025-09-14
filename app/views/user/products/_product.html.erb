@@ -1,0 +1,35 @@
+<tr class="list-<%= list.id %>-product-<%= product.id %> table-row hover:bg-blue-50 transition-colors duration-200 group" data-products-id="<%= dom_id(product) %>" data-sortable-id="<%= product.id %>">
+  <td class="px-6 py-4 whitespace-nowrap"> 
+    <div class="flex items-center">
+      <span class="text-sm font-semibold text-gray-900"><%= product.app_id %></span>
+    </div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap"> 
+    <div class="text-sm font-bold text-green-600 bg-green-50 inline-block px-3 py-1 rounded-full">
+      <%= product.price_humanized %>
+    </div>
+  </td>
+  <td class="px-6 py-4"> 
+    <div class="text-sm font-medium text-gray-900 max-w-xs truncate" title="<%= product.product_name %>">
+      <%= product.product_name %>
+    </div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap"> 
+    <div class="text-sm text-gray-600 font-medium inline-block px-3 py-1">
+      <%= product.company %>
+    </div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-right">
+    <div class="flex gap-2 justify-end opacity-20 group-hover:opacity-100 transition-opacity duration-200">
+      <button class="enhanced-action-btn-small bg-gray-100 hover:bg-gray-200" data-sortable-handle data-tooltip="<%= t('tooltips.sort') %>">
+        <%= phosphor_icon 'arrows-out-cardinal', class: 'w-3 h-3' %>
+      </button>
+      <%= link_to edit_user_list_product_path(list, product), remote: true, class: "enhanced-action-btn-small bg-blue-100 hover:bg-blue-200 text-blue-700", data: {tooltip: t('tooltips.edit')} do %>
+        <%= phosphor_icon 'pencil-simple', options: { class: 'w-3 h-3' } %>
+      <% end %>
+      <%= link_to user_list_product_path(list, product), remote: true, class: "enhanced-action-btn-small bg-red-100 hover:bg-red-200 text-red-700", method: :delete, data: {tooltip: t('tooltips.destroy'), confirm: t('are_you_sure') }, remote: true do %>
+        <%= phosphor_icon 'trash-simple', options: { class: 'w-3 h-3' } %>
+      <% end %>
+    </div>
+  </td>
+</tr>

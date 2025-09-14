@@ -1,0 +1,6 @@
+<div class="text-gray-500" id="<%= dom_id(list) %>">
+  <%= link_to visibility_user_list_path(list), remote: true, method: :patch, class: "button is-white has-icon-right", data: { confirm: list.is_visible ? t("list.invisible_confirmation") : t("list.visible_confirmation"), tooltip: list.is_visible ? t("list.is_now_visible") : t("list.is_now_invisible")  } do %>
+    <%= list.is_visible ? phosphor_icon('eye') : phosphor_icon('eye-slash') %>
+  <% end %>
+
+</div>

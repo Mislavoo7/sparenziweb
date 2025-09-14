@@ -1,0 +1,53 @@
+
+<div id="tota-filters" data-controller="filters">
+  <%= render "user/lists/total_filters", lists: @lists %>
+
+  <div id="carousel" class="relative w-full overflow-hidden py-4">
+    <div id="slides" class="flex transition-transform duration-500 ease-in-out"
+                     style="transform: translateX(0%)">
+
+      <div class="min-w-full flex justify-center">
+        <div class="w-full max-w-5xl px-4">
+          <%= render "user/lists/total_table", lists: @lists, currency: @currency %>
+        </div>
+      </div>
+
+      <div class="min-w-full flex justify-center">
+        <div class="w-full max-w-5xl px-4">
+          <%= render "user/lists/total_charts", lists: @lists, currency: @currency %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button id="prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-primary-500 text-white p-2 z-2 w-10 h-10 rounded-full">
+      &larr;
+    </button>
+    <button id="next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary-500 text-white p-2 z-2 w-10 h-10 rounded-full">
+      &rarr;
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.getElementById("slides");
+    const dots = [document.getElementById("dot0"), document.getElementById("dot1")];
+    let currentSlide = 0;
+
+    const updateSlide = () => {
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    };
+
+    document.getElementById("prev").addEventListener("click", () => {
+      currentSlide = currentSlide === 0 ? 1 : 0;
+      updateSlide();
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+      currentSlide = currentSlide === 0 ? 1 : 0;
+      updateSlide();
+    });
+  });
+</script>
+

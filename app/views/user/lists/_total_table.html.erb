@@ -1,0 +1,33 @@
+<div class="mt-8 flow-root ">
+  <div class="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+    <div class="inline-block w-3/4 ml-16 py-2 align-middle sm:px-6 lg:px-8 ">
+      <table class=" min-w-full divide-y divide-gray-300 ">
+        <thead>
+          <tr>
+            <th class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0"><%= tf("list.shop_name") %></th>
+            <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= tf("list.taken_at") %></th>
+            <th class="px-3 py-3.5 text-right text-sm font-semibold text-gray-900"><%= tf("list.total_price") %></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 ">
+          <% lists.each do |list| %>
+            <tr data-filters-target="rows" 
+                data-shop-name="<%= list.shop_name.parameterize %>"
+                data-currency="<%= list.currency %>"
+                data-price="<%= list.total_price %>"
+                data-date="<%= list.taken_at.strftime("%d.%m.%Y") %>">
+                <td class="py-4 pr-3 pl-4 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-0"><%= list.shop_name %></td>
+                <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap"><%= list.taken_at.strftime("%d.%m.%Y") %></td>
+                <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap text-right"><%= list.total_price_humanized %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0"><%= t("total") %></td>
+            <td class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></td>
+            <td class="px-3 py-3.5 text-right text-sm font-semibold text-gray-900" data-filters-target="totalPrice"> <%= List.total_amount_humanized(currency) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

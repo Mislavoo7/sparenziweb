@@ -1,0 +1,12 @@
+var totalList = document.querySelector('#js-list-total-price-<%= @list.id %>');
+totalList.innerHTML = "<%= @list.total_price_humanized %>";
+
+var element = document.querySelector(`[data-lists-id="<%= dom_id(@list) %>"]`);
+if (element) {
+  element.style.transition = "opacity 0.2s ease-out"; // fast equivalent
+  element.style.opacity = 0;
+
+  setTimeout(function() {
+    element.remove();
+  }, 200); // match "fast" timing
+}

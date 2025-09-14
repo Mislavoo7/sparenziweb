@@ -1,0 +1,21 @@
+<div class="user-page-wrapper">
+  <div class="user-title-wrapper">
+    <%= render "user/lists/header", 
+      title: t('user_nav.lists'), 
+      new_url: new_user_list_path, 
+      new_title:  t('list.add') %>
+  </div>
+</div>
+
+<section class="w-full py-2 xl:py-2 overflow-hidden">
+  <div class="w-full xl:container mx-auto flex flex-col-reverse xl:flex-row items-center justify-between gap-8">
+
+    <ul data-controller="sort-with-update"
+        data-sortable-update-path="<%= sort_user_lists_path %>"
+        class="w-full pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+        <% @lists.each do |list| %>
+          <%= render "user/lists/list", list: list %>
+        <% end %>
+    </ul>
+  </div>
+</section>

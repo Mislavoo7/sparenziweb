@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .mask-gradient-center {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 30%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 30%, black 80%, transparent);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+  }
+}
+.page-wrapper {
+  @apply
+   flex 
+   flex-col 
+   lg:flex-row 
+   max-w-7xl 
+   mx-auto 
+   px-6 
+   py-8 
+   bg-white 
+   rounded-3xl 
+   mt-24 
+   h-[550px] 
+   relative 
+   overflow-hidden;
+   strong {
+     @apply
+       mt-8 
+       text-lg 
+       font-medium 
+       text-pretty 
+       text-2xl 
+       pb-8
+       text-gray-500;
+   }
+}
+
+.user-page-wrapper {
+  @apply
+   flex 
+   flex-col 
+   lg:flex-row 
+   max-w-7xl 
+   mx-auto 
+   px-6 
+   py-8 
+   bg-white 
+   rounded-3xl 
+   relative 
+   overflow-hidden;
+   strong {
+     @apply
+       mt-8 
+       text-lg 
+       font-medium 
+       text-pretty 
+       text-2xl 
+       pb-8
+       text-gray-500;
+   }
+}
+.page-wrapper-small {
+  @apply
+   flex 
+   flex-col 
+   lg:flex-row 
+   max-w-7xl 
+   mx-auto 
+   px-6 
+   py-8 
+   bg-white 
+   rounded-3xl 
+   mt-24 
+   h-[250px] 
+   relative 
+   overflow-hidden;
+   strong {
+     @apply
+       mt-8 
+       text-lg 
+       font-medium 
+       text-pretty 
+       text-2xl 
+       pb-8
+       text-gray-500;
+   }
+}
+.title-wrapper {
+  @apply 
+    mt-[0.5rem] 
+    flex-1 
+    flex 
+    items-center;
+}
+
+.user-title-wrapper {
+  @apply 
+    mt-[2.5rem] 
+    flex-1 
+    flex 
+    items-center;
+}
+
+.title {
+  @apply
+    text-6xl 
+    md:text-8xl 
+    font-extrabold 
+    leading-tight 
+    tracking-tight 
+    pt-8
+    pb-8
+    text-gray-900;
+}
+.page-image-wrapper {
+  @apply
+    flex-1 
+    relative 
+    overflow-visible;
+}
+.page-image {
+  @apply
+    absolute 
+    inset-y-0 
+    left-1/2 
+    -translate-x-1/2 
+    w-[160%] 
+    h-full 
+    object-cover 
+    mask-gradient-center;
+}

@@ -1,0 +1,31 @@
+.section-wrapper {
+  @apply
+    mx-auto 
+    max-w-7xl 
+    px-6 
+    lg:px-8;
+}
+.section-inner-wrapper {
+  @apply
+    mx-auto 
+    lg:mx-0;
+
+}
+.section-title {
+  @apply
+    text-4xl 
+    font-semibold 
+    tracking-tight 
+    text-black 
+    sm:text-5xl;
+}
+
+.section-content {
+  @apply
+    mt-8 
+    text-lg 
+    font-medium 
+    text-pretty 
+    text-black 
+    sm:text-xl/8;
+}

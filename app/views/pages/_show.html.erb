@@ -1,0 +1,19 @@
+<div class="page-wrapper">
+
+  <div class="title-wrapper">
+    <div>
+      <h1 class="title"> <%= @featured_section.translate.title %> </h1>
+      <%= raw @featured_section.translate.content %>
+    </div>
+  </div>
+
+  <% unless @page.image.blank? %>
+    <div class="page-image-wrapper">
+      <%= image_tag @page.image_url(:medium), class: "page-image" %>
+    </div>
+  <% end %>
+</div>
+
+<% @other_sections.each do |section| %>
+  <%= render "sections/#{section.to_partial}", section: section %>
+<% end %>

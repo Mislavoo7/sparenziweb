@@ -1,0 +1,18 @@
+var productNewBttnTr = document.querySelector('.list-<%= @list.id %>-new-product');
+var productTr = document.createElement('tr');
+productTr.classList.add('list-<%= @list.id %>-create-product');
+productTr.style.opacity = 0;
+productTr.style.transition = "opacity 0.2s ease-out";
+
+var productTd = document.createElement('td');
+productTd.colSpan = 5;
+
+if (productNewBttnTr) {
+  productTd.innerHTML = "<%= j render 'user/products/form' %>";
+  productTr.append(productTd);
+  productNewBttnTr.replaceWith(productTr);
+
+  setTimeout(() => {
+    productTr.style.opacity = 1;
+  }, 10); // Small delay to ensure the element is rendered
+}

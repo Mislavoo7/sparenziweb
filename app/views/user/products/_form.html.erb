@@ -1,0 +1,10 @@
+<div class="form-container">
+  <%= form_for [:user, @list, @product], :html => { class: 'form' }, remote: true do |f| %>
+    <div class="form-body flex gap-4">
+      <%= f.text_field :price_for_enter, class: "input", placeholder: tf("product.price"), value: @product.price %>
+      <%= f.text_field :product_name, class: "input", placeholder: tf("product.product_name") %>
+      <%= f.text_field :company, class: "input", placeholder: tf("product.company") %>
+      <%= f.submit t("save"), data: { disable_with: t('please_wait') }, class: "button is-primary" %>
+    </div>
+  <% end %>
+</div>

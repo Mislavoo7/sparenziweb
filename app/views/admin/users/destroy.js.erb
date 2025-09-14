@@ -1,0 +1,9 @@
+var element = document.querySelector(`[data-users-id="<%= dom_id(@user) %>"]`);
+if (element) {
+  element.style.transition = "opacity 0.2s ease-out"; // fast equivale
+  element.style.opacity = 0;
+
+  setTimeout(function() {
+    element.remove();
+  }, 200); // match "fast" timing
+}

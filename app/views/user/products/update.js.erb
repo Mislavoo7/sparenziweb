@@ -1,0 +1,25 @@
+var totalLists = document.querySelector('#tota-filters');
+totalLists.innerHTML = "<%= j render "user/lists/total_filters", lists: @lists %>";
+
+var totalList = document.querySelector('#js-list-total-price-<%= @list.id %>');
+totalList.innerHTML = "<%= @list.total_price_humanized %>";
+
+var productNewForm = document.querySelector('.list-<%= @list.id %>-edit-product-<%= @product.id %>');
+
+var productTr = document.createElement('tr');
+productTr.style.opacity = 0;
+productTr.style.transition = "opacity 0.2s ease-out";
+
+if (productNewForm) {
+  productTr.innerHTML = "<%= j render 'user/products/product', product: @product, list: @list %>";
+
+  productTr.classList.add('list-<%= @list.id %>-product-<%= @product.id %>');
+  productTr.setAttribute('data-products-id', "<%= @product.id %>");
+  productTr.setAttribute('data-sortable-id', "<%= @product.id %>");
+
+  productNewForm.replaceWith(productTr)
+
+  setTimeout(() => {
+    productTr.style.opacity = 1;
+  }, 10); // Small delay to ensure the element is rendered
+}

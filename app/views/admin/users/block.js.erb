@@ -1,0 +1,13 @@
+// Replace the element based on the data-id attribute (without jQuery)
+document.querySelectorAll('[data-id="block-bttn-<%= dom_id(@user) %>"]').forEach(element => {
+  // Create a new temporary div to hold the rendered HTML
+  element.outerHTML = `<%= j render 'admin/users/block_bttn', user: @user %>`;
+});
+
+// Dispatch the custom event for the toast message
+document.dispatchEvent(new CustomEvent('dispatch-toast', { 
+  detail: { 
+    message: '<%= @user.blocked? ? t("user.is_now_blocked") : t("user.is_now_unblocked") %>', 
+    type: 'success' 
+  } 
+}));

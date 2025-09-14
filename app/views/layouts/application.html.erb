@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Sparenziweb" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <meta name="author" content="<%= content_for?(:author) ? yield(:author) : Seo.default_author %>"/>
+    <meta name="description" content="<%= content_for?(:description) ? truncate(yield(:description), length: 300, separator: ' ') : Seo.default_description %>"/>
+    <meta name="keywords" content="<%= content_for?(:keywords) ? yield(:keywords) : Seo.default_keywords %>"/>
+    <meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : Seo.default_title %>"/>
+    <meta property="og:type" content="<%= content_for?(:type) ? yield(:type) : 'website' %>"/>
+    <meta property="og:url" content="<%= content_for?(:url) ? yield(:url) : @absolute_url %>"/>
+    <meta property="og:description" content="<%= content_for?(:description) ? truncate(yield(:description), length: 300, separator: ' ')  : Seo.default_description %>"/>
+    <meta property="og:image" content="<%= content_for?(:image) ? seo_image_path(yield(:image)) : "#{@web_url}#{image_path(Seo.default_image)}" %>"/>
+    <%= yield :head %>
+
+    <link rel="apple-touch-icon" href="<%= asset_url("apple-touch-icon.png") %>">
+    <link rel="icon" href="<%= asset_url("favicon.ico") %>"> 
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload", "data-no-cache": Time.now.to_i %>
+
+    <%= javascript_include_tag "turbo", type: "module" %>
+    <%#= javascript_importmap_tags %>
+
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <main class="bg-white">
+      <%= render "layouts/header" %>
+      <%= yield %>
+      <%= render "layouts/footer" %>
+    </main>
+  </body>
+</html>

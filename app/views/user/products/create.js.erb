@@ -1,0 +1,33 @@
+var totalLists = document.querySelector('#tota-filters');
+totalLists.innerHTML = "<%= j render "user/lists/total_filters", lists: @lists %>";
+
+var productNewForm = document.querySelector('.list-<%= @list.id %>-create-product');
+var productNewButtonTr = document.createElement('tr');
+
+var totalList = document.querySelector('#js-list-total-price-<%= @list.id %>');
+totalList.innerHTML = "<%= @list.total_price_humanized %>";
+
+var productTr = document.createElement('tr');
+productTr.style.opacity = 0;
+productTr.style.transition = "opacity 0.2s ease-out";
+
+  productTr.classList.add('list-<%= @list.id %>-product-<%= @product.id %>');
+  productTr.setAttribute('data-products-id', "<%= @product.id %>");
+  productTr.setAttribute('data-sortable-id', "<%= @product.id %>");
+
+if (productNewForm) {
+  productTr.innerHTML = "<%= j render 'user/products/product', product: @product, list: @list %>";
+
+  productNewButtonTr.innerHTML = "<%= j render 'user/products/new_bttn', list: @list %>";
+  productNewForm.replaceWith(productNewBttnTr)
+
+  console.log(productNewForm)
+
+  productNewBttnTr.parentNode.insertBefore(productTr, productNewBttnTr);
+
+
+  setTimeout(() => {
+    productNewButtonTr.style.opacity = 1;
+    productTr.style.opacity = 1;
+  }, 10); // Small delay to ensure the element is rendered
+}

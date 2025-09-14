@@ -1,0 +1,14 @@
+<header class="header">
+  <div class="nav-wrapper">
+    <nav class="nav" aria-label="Global">
+
+      <%= link_to root_path, class: "nav-logo" do %>
+        <span class="sr-only text-2xl"><%= @home_page.translate.title %></span>
+        <%= image_tag "logo_with_text.png", class: "h-24  mx-auto lg:mx-0", alt: "logo" %>
+      <% end %>
+
+      <%= render "layouts/mobile_nav" %>
+      <%= render "layouts/desktop_nav" %>
+    </nav>
+
+</header>

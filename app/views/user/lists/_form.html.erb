@@ -1,0 +1,42 @@
+<div class="form-container">
+  <%= form_for [:user, @list], :html => { class: 'form' } do |f| %>
+
+    <div class="form-body">
+      <div class="mt-2">
+        <%= f.label :shop_name, class: 'label' %>
+        <div class="mt-4">
+          <%= f.text_field :shop_name, class: "input" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-body">
+      <div class="mt-2">
+        <%= f.label :currency, class: 'label' %>
+        <div class="mt-4">
+          <%= f.select :currency, [['($) USD', '$'], ['(€) EUR', '€']], {}, class: "input" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-body">
+      <div class="mt-4">
+        <%= f.label :taken_at, class: 'label' %>
+        <div class="mt-2">
+          <%= f.text_field :taken_at, class: "input is-datepicker js-input-datepicker", value: @list.taken_at ? @list.taken_at.strftime("%d.%m.%Y.") : Date.today.strftime("%d.%m.%Y.") %>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex pt-6">
+      <%= link_to t('cancel'), user_root_path, class: 'button is-white' %>
+      <%= f.submit t("save"), data: { disable_with: t('please_wait') }, class: "button is-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    initDatepicker();
+  });
+</script>

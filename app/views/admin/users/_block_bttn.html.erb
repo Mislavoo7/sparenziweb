@@ -1,0 +1,6 @@
+<%= link_to block_admin_user_path(user), remote: true, method: :patch, class: "section-bttn", data: { id: "block-bttn-#{dom_id(user)}" , confirm: user.blocked? ? t("user.unblock_confirmation") : t("user.blocked_confirmation") , tooltip: user.blocked? ? t("user.is_now_blocked") : t("user.is_now_unblocked")  } do %>
+  <%= user.blocked? ? phosphor_icon('empty') : phosphor_icon('check') %>
+  <span class="sr-only">
+    <%= user.blocked? ? t("block") : t("unblock") %>
+  </span>
+<% end %>

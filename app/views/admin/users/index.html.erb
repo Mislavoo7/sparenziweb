@@ -1,0 +1,21 @@
+<div class="page">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="thead-th"><%= tf('user.email') %></th>
+        <th class="thead-th"><%= t('actions') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr id="<%= dom_id(user) %>">
+          <td class="tbody-td"><%= user.email %></td>
+          <td class="tbody-td">
+            <%= render "admin/users/block_bttn", user: user %>
+            <%= link_to t('delete'), admin_user_path(user), class: "table-button", remote: true, method: :delete, data: { confirm: t('are_you_sure') } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

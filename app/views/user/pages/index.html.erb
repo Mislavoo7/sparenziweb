@@ -1,0 +1,17 @@
+<div class="page-wrapper-small">
+
+  <div class="title-wrapper">
+    <div>
+      <h1 class="section-title"> <%= t("hi") %> <%= current_user.email %> </h1>
+    </div>
+  </div>
+
+</div>
+
+<div class="bg-white">
+  <div class="section-wrapper">
+    <div class="section-inner-wrapper">
+      <%= render "user/lists/index" %>
+    </div>
+  </div>
+</div>
